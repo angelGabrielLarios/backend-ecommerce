@@ -1,0 +1,28 @@
+
+### primer peticion
+POST http://localhost:1234/users/register
+Content-Type: application/json
+
+{   
+    "nif": "12345678",
+    "name": "angel",
+    "address": "flor del campo",
+    "phone": "7712",
+    "email": "lariosacostaa@gmail.com",
+    "password": "angel123saAAS4"
+}
+
+
+###login
+POST http://localhost:1234/users/login
+Content-Type: application/json
+
+{   
+    "email": "lariosacostaa@gmail.com",
+    "password": "angel1234"
+}
+
+
+
+
+
