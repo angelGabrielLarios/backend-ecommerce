@@ -9,6 +9,8 @@ export const createProductRouter = ({ productModel }) => {
     const productController = new ProductController({ productModel })
 
     productsRouter.get('/', productController.getAll)
+    productsRouter.get('/search', productController.getProductSeccionBySearch)
+
 
     return productsRouter
 

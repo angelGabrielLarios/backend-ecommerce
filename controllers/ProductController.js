@@ -9,4 +9,12 @@ export class ProductController {
 
         res.json(products)
     }
+
+    getProductSeccionBySearch = async (req, res) => {
+        const { search } = req.query
+
+        const productos_seccions = await this.productModel.getProductSeccionBySearch(search)
+
+        res.json(productos_seccions)
+    }
 }

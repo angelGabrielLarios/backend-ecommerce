@@ -4,14 +4,16 @@ import { UserController } from '../controllers/UserController.js'
 
 
 export const createUserRouter = ({ userModel }) => {
-    const productsRouter = Router()
+    const userRouter = Router()
 
-    const productController = new UserController({ userModel })
+    const userController = new UserController({ userModel })
 
-    productsRouter.post('/register', productController.createUser)
-    productsRouter.post('/login', productController.login)
+    userRouter.post('/register', userController.createUser)
+    userRouter.post('/login', userController.login)
 
 
-    return productsRouter
+
+
+    return userRouter
 
 }
