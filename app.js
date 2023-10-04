@@ -3,6 +3,7 @@ import { corsMiddleware } from './middlewares/cors.js'
 import { createProductRouter } from './routes/productsRoutes.js'
 import { createUserRouter } from './routes/usersRouter.js'
 import { createSecciontRouter } from './routes/seccionsRoutes.js'
+import { createUserProductRouter } from './routes/usersProductsRoutes.js'
 /* 
 ALTER TABLE Usuarios
 MODIFY COLUMN NIF INT AUTO_INCREMENT PRIMARY KEY;
@@ -10,7 +11,7 @@ MODIFY COLUMN NIF INT AUTO_INCREMENT PRIMARY KEY;
 */
 
 
-export const createApp = ({ productModel, userModel, seccionModel }) => {
+export const createApp = ({ productModel, userModel, seccionModel, userProductModel }) => {
     const app = express()
 
     app.use(json())
@@ -21,6 +22,7 @@ export const createApp = ({ productModel, userModel, seccionModel }) => {
     app.use('/products', createProductRouter({ productModel }))
     app.use('/users', createUserRouter({ userModel }))
     app.use('/seccions', createSecciontRouter({ seccionModel }))
+    app.use('/user_product', createUserProductRouter({ userProductModel }))
 
     const PORT = process.env.PORT ?? 1234
 

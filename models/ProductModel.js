@@ -20,6 +20,3 @@ export class ProductModel {
 
 }
 
-/* 
-P.codigo_producto as codigo_producto, P.nombre AS nombre_producto, P.descripcion AS descripcion_producto, P.precio AS precio_producto, P.url_image AS url_image_producto, S.nombre AS nombre_seccion 
-*/

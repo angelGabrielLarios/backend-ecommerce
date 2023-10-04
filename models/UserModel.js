@@ -29,7 +29,7 @@ export class UserModel {
 
                 await connection.query('INSERT INTO Usuario (NIF, nombre, direccion, telefono, correo,password) VALUES (?, ?, ?, ?, ?, ?)', [nif, name, address, phone, email, hashedPassword]);
 
-                const [usersCurrent] = await connection.query('SELECT * FROM Usuario WHERE correo = ?', [email])
+                const [usersCurrent] = await connection.query('SELECT NIF, correo, nombre, direccion, telefono FROM Usuario WHERE correo = ?', [email])
 
                 const userFound = usersCurrent[0]
 
@@ -49,28 +49,27 @@ export class UserModel {
 
     static async login({ email, password }) {
         try {
-            const [usersCurrent] = await connection.query('SELECT * FROM Usuario WHERE correo = ?', [email])
+            const [usersCurrent] = await connection.query('SELECT *  FROM Usuario WHERE correo = ?', [email])
 
 
-            console.log(usersCurrent)
             if (usersCurrent.length === 0) {
                 return { message: `Usuario o Contraseña Erroneas` }
             }
             const userFound = usersCurrent[0]
-
-
-
-
             const passwordMatch = await compare(password, userFound.password)
 
-
             if (passwordMatch) {
-                return userFound
+                return {
+                    NIF: userFound.NIF,
+                    correo: userFound.correo,
+                    nombre: userFound.nombre,
+                    direccion: userFound.direccion,
+                    telefono: userFound.telefono
+                }
             }
             else {
                 return { message: `Usuario o Contraseña Erroneas` }
             }
-
 
 
         } catch (error) {
