@@ -24,7 +24,6 @@ CREATE TABLE Visita (
     usuario_nif VARCHAR(20),
     codigo_seccion INT,
     fecha_visita DATETIME,
-    PRIMARY KEY (usuario_nif, codigo_seccion, fecha_visita),
     FOREIGN KEY (usuario_nif) REFERENCES Usuario(NIF),
     FOREIGN KEY (codigo_seccion) REFERENCES Seccion(codigo_seccion)
 );

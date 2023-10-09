@@ -28,7 +28,10 @@ export class UserProductController {
 
     deleteUserProducts = async (req, res) => {
         const { user_nif, codigo_producto } = req.query
-        console.log(user_nif, codigo_producto)
+        console.log({
+            user_nif,
+            codigo_producto
+        })
         const user_product = await this.userProductModel.deleteUserProducts(user_nif, codigo_producto)
 
         res.json(user_product)

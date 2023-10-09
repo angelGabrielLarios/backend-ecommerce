@@ -74,10 +74,25 @@ export class UserProductModel {
     static async deleteUserProducts(user_nif, codigo_producto) {
         try {
 
-            await connection.query(`DELETE FROM Usuario_Producto WHERE usuario_nif = ? AND codigo_producto = ? `, [user_nif, codigo_producto])
-            return {
-                message: "Producto Eliminado"
+
+            const [user_product] = await connection.query(`SELECT * FROM Usuario_Producto WHERE codigo_producto = ? AND usuario_nif = ?`, [codigo_producto, user_nif])
+
+            console.log(user_product)
+            if (user_product.length > 0) {
+
+                await connection.query(`DELETE FROM Usuario_Producto WHERE usuario_nif = ? AND codigo_producto = ? `, [user_nif, codigo_producto])
+
+                return {
+                    message: "Producto Eliminado",
+
+                }
             }
+
+            return {
+                hola: "hola"
+            }
+
+
         } catch (error) {
             throw new Error(error)
         }

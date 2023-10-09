@@ -4,14 +4,14 @@ import { createProductRouter } from './routes/productsRoutes.js'
 import { createUserRouter } from './routes/usersRouter.js'
 import { createSecciontRouter } from './routes/seccionsRoutes.js'
 import { createUserProductRouter } from './routes/usersProductsRoutes.js'
+import { createVisitaRouter } from './routes/visitaRoutes.js'
 /* 
-ALTER TABLE Usuarios
-MODIFY COLUMN NIF INT AUTO_INCREMENT PRIMARY KEY;
+ALTER TABLE Usuarios MODIFY COLUMN NIF INT AUTO_INCREMENT PRIMARY KEY;
 
 */
 
 
-export const createApp = ({ productModel, userModel, seccionModel, userProductModel }) => {
+export const createApp = ({ productModel, userModel, seccionModel, userProductModel, visitaModel }) => {
     const app = express()
 
     app.use(json())
@@ -23,6 +23,7 @@ export const createApp = ({ productModel, userModel, seccionModel, userProductMo
     app.use('/users', createUserRouter({ userModel }))
     app.use('/seccions', createSecciontRouter({ seccionModel }))
     app.use('/user_product', createUserProductRouter({ userProductModel }))
+    app.use('/visitas', createVisitaRouter({ visitaModel }))
 
     const PORT = process.env.PORT ?? 1234
 
